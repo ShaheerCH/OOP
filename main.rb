@@ -1,10 +1,21 @@
-require './student'
+require './factory'
 
 def main
-  student_x = Student.new(age: 10, name: 'RB', classroom: '5th Grade')
-  puts "Can student named #{student_x.name} use service?"
-  puts "R/ #{student_x.can_use_service?}"
-  puts student_x.play_hooky
+  factory = Factory.new
+
+  loop do
+    choice = factory.run
+    case choice
+    when 1..8
+      factory.process(choice)
+    when 9
+      puts 'App quitting gracefully..'
+      break
+    else
+      puts 'INVALID OPTION'
+    end
+    factory.separator
+  end
 end
 
 main
